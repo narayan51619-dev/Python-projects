@@ -1,0 +1,34 @@
+import cv2
+import matplotlib.pyplot as plt
+
+# Read image in grayscale
+img = cv2.imread("image1.jpg", 0)
+
+if img is None:
+    print("Image not found. Check the file name.")
+    exit()
+
+# Perform histogram equalization
+equalized = cv2.equalizeHist(img)
+
+# Display original and equalized images
+plt.figure(figsize=(10, 5))
+
+plt.subplot(1, 2, 1)
+plt.imshow(img, cmap="gray")
+plt.title("Original Image")
+plt.axis("off")
+
+plt.subplot(1, 2, 2)
+plt.imshow(equalized, cmap="gray")
+plt.title("Equalized Image")
+plt.axis("off")
+
+plt.tight_layout()
+plt.show()
+
+# Save output
+cv2.imwrite("equalized.jpg", equalized)
+
+print("Histogram Equalization successful!")
+print("Output saved as equalized.jpg")
